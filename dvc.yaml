@@ -1,0 +1,28 @@
+stages:
+  preprocess:
+    cmd: python3 src/preprocess.py
+    deps:
+      - src/preprocess.py
+      - data/raw/churn.csv
+    outs:
+      - data/processed/train.csv
+      - data/processed/test.csv
+
+  train:
+    cmd: python3 src/train.py
+    deps:
+      - src/train.py
+      - data/processed/train.csv
+    outs:
+      - models/model.pkl
+      - models/features.pkl
+
+  evaluate:
+    cmd: python3 src/evaluate.py
+    deps:
+      - src/evaluate.py
+      - models/model.pkl
+      - models/features.pkl
+      - data/processed/test.csv
+    metrics:
+      - reports/metrics.json
