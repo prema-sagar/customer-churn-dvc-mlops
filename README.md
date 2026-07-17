@@ -1,3 +1,8 @@
+## Architecture
+
+![Architecture Diagram](docs/architecture.png)
+
+
 # Customer Churn Prediction using DVC & AWS S3
 
 An end-to-end MLOps project demonstrating **Data Version Control (DVC)**, **AWS S3 remote storage**, **Machine Learning pipeline automation**, and **Customer Churn Prediction** using Scikit-learn.
