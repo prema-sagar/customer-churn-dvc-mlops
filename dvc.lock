@@ -9,52 +9,60 @@ stages:
       size: 970457
     - path: src/preprocess.py
       hash: md5
-      md5: 8bfe4a079766e1ce8a547011ebb1cbca
-      size: 1014
+      md5: af76a027d733e5b16a87f29d1f60155e
+      size: 1003
+    params:
+      params.yaml:
+        model.random_state: 42
+        split.test_size: 0.2
     outs:
     - path: data/processed/test.csv
       hash: md5
-      md5: e35b1df3b3610bd4f2d0e36ee4e10d26
-      size: 179659
+      md5: 9ab90b1b613e6bae93b56fe298b412b5
+      size: 195028
     - path: data/processed/train.csv
       hash: md5
-      md5: e75217ac824ac1bf8a65fac39fad58a7
-      size: 715072
+      md5: 70bc5c6c69815780f113cbac240a28fa
+      size: 776473
   train:
     cmd: python3 src/train.py
     deps:
     - path: data/processed/train.csv
       hash: md5
-      md5: e75217ac824ac1bf8a65fac39fad58a7
-      size: 715072
+      md5: 70bc5c6c69815780f113cbac240a28fa
+      size: 776473
     - path: src/train.py
       hash: md5
-      md5: 3809ad8309e38708f6995ffd145b5c06
-      size: 935
+      md5: 0827c6722c5536888b0626cd116c1968
+      size: 1510
+    params:
+      params.yaml:
+        model.n_estimators: 200
+        model.random_state: 42
     outs:
     - path: models/features.pkl
       hash: md5
-      md5: 949eaab20c0ab18d7b4ed4aca62febcf
-      size: 1053
+      md5: 631e24b57171f551b0c02ceb927cf75e
+      size: 252635
     - path: models/model.pkl
       hash: md5
-      md5: a800ba177575e967617820b4b5087fec
-      size: 19596345
+      md5: a9740587487cae0992254e677aba3bc7
+      size: 66721193
   evaluate:
     cmd: python3 src/evaluate.py
     deps:
     - path: data/processed/test.csv
       hash: md5
-      md5: e35b1df3b3610bd4f2d0e36ee4e10d26
-      size: 179659
+      md5: 9ab90b1b613e6bae93b56fe298b412b5
+      size: 195028
     - path: models/features.pkl
       hash: md5
-      md5: 949eaab20c0ab18d7b4ed4aca62febcf
-      size: 1053
+      md5: 631e24b57171f551b0c02ceb927cf75e
+      size: 252635
     - path: models/model.pkl
       hash: md5
-      md5: a800ba177575e967617820b4b5087fec
-      size: 19596345
+      md5: a9740587487cae0992254e677aba3bc7
+      size: 66721193
     - path: src/evaluate.py
       hash: md5
       md5: 50d8edc320911f0bd07f1511004c7428
@@ -62,5 +70,5 @@ stages:
     outs:
     - path: reports/metrics.json
       hash: md5
-      md5: e35b304403aaa1d605e2f9495ae707d0
-      size: 97
+      md5: 7abe4f778110d6888fd3f71a9d8ee3ad
+      size: 96
